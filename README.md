@@ -6,7 +6,7 @@ Maybe sewing is your hobby and you want to sew a perfectly fitting garment for y
 
 Or you are interested in a perfectly fitting garment for a more technical reason. For example, you develop smart textiles and need a constant contact pressure for your sensors.
 
-The functions presented here allow you to create the basic cutting pattern for a shirt, which you can then be modified as you like. 
+The functions presented here allow you to create the basic cutting pattern for a shirt, which you can then be modified as you like.
 
 The following options are already included:
 * Gender: Lady, Men
@@ -34,13 +34,13 @@ SG Library (https://github.com/timlueth/SG-Lib-Matlab-Toolbox)
 
 ## Usage
 
-See 'Example.m'
+See [`Example.m`](./Example.m)
 
 ## References
 * Vivien Altmann: Schnittmuster für elastische Stoffe erstellen 1: Grundschnitt für T-Shirts, Online Tutorial https://www.makerist.de/courses/schnittmuster-fuer-elastische-stoffe-erstellen-1-grundschnitt-fuer-t-shirts.
-* Guido Hofenbitzer (2009): Schnittkonstruktion für Damenmode: Bekleidung : Grundlagen, Band 1, Verlag Europa-Lehrmittel Nourney, Vollmer, 368 Seiten,.
+* Guido Hofenbitzer (2009): Schnittkonstruktion für Damenmode: Bekleidung : Grundlagen, Band 1, Verlag Europa-Lehrmittel Nourney, Vollmer, 368 Seiten.
 
 ## Thank you
 
 * Prof. Dr. Lüth [@timlueth](https://github.com/timlueth) for the introduction of data types like point lists (PL) and closed point lists (CPL) and of course for the provision of a large number of functions to handle them within the SG-Library.
-* Dr. Matthias Träger for the basic code for the generation of SVG files from point lists (see function PLwriteSVG2).
+* Dr. Matthias Träger for the basic code for the generation of SVG files from point lists (see function [`PLwriteSVG2`](./PLwriteSVG2.m)).
