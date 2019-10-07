@@ -8,6 +8,8 @@ Or you are interested in a perfectly fitting garment for a more technical reason
 
 The functions presented here allow you to create the basic cutting pattern for a shirt, which you can then be modified as you like.
 
+![Example pattern](./Pattern_example.png)
+
 The following options are already included:
 * Gender: Lady, Men
 * Fit: wide, regular, slim
