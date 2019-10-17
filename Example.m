@@ -16,7 +16,7 @@ close all; clc; clear all;
 load('human_example.mat');
 
 %% create pattern
-pattern = create_pattern_shirt(human_example, 'slim', 'long', 'round');
+pattern = create_pattern_shirt(human_example, 'slim', 'long', 'round','simple_cuff');
 
 plot_basic_pattern(pattern);
 plot_production_pattern(pattern)

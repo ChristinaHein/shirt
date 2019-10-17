@@ -82,7 +82,7 @@ if ~isempty(position)
     PLwriteSVG2(PL, 'fName', filename);
 end
 
-position = find(pattern.part_names == 'cuffs_neckline_fine');
+position = find(pattern.part_names == 'cuffs_neckline');
 if ~isempty(position) 
     separator = [1; find(isnan(pattern.production_pattern(:,1)) & isnan(pattern.production_pattern(:,2)))];
     PL = pattern.production_pattern(separator(position):separator(position+1),:);
@@ -93,7 +93,7 @@ if ~isempty(position)
     PL = PL(2:end,:);
     end
     PL = PL.*10; % from cm to mm
-    filename = fullfile(directory, 'Cuffs_neckline_fine');
+    filename = fullfile(directory, 'Cuffs_neckline');
     PLwriteSVG2(PL, 'fName', filename);
 end
 

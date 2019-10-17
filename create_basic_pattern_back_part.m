@@ -40,11 +40,11 @@ else % v neckline
     NS = P1+pattern.construction_dimensions.neckline(2)*P1P2/norm(P1P2); % Point neckline-shoulder
     PL = pattern.construction_points.B;
     PL = [PL; pattern.construction_points.b1; NS];
-    %parameters for cuffs neckline
-    pattern.construction_points.necklength_back = PLCurveLength(PL);
 end
 PL = PLBezier3P(PL(1,:),PL(2,:),PL(3,:),30);
 pattern.basic_pattern = [pattern.basic_pattern; PL];
+%parameters for cuffs neckline
+pattern.construction_points.necklength_back = PLCurveLength(PL);
 %% shoulder line
 pattern.basic_pattern = [pattern.basic_pattern; pattern.construction_points.b2+[-pattern.construction_dimensions.cm_sb 0]];
 %% armhole

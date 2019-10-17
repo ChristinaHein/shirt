@@ -11,7 +11,7 @@ function human = create_human_from_size(type,size,name)
 %
 % === INPUT ARGUMENTS ===
 % type      = 'female', 'male' or 'child'
-% size      = clothing size (female: 32-46, male: 42-60)
+% size      = clothing size (female: 32-60, male: 42-60)
 % name      = name of human
 %
 % === OUTPUT ARGUMENTS ===
@@ -138,19 +138,109 @@ if strcmp(type,'female')
         human.back_length               = 42.4;
         human.seat_length               = 21.4;
         human.rear_shoulder_width       = 38.4/pi+2*13; %neck circumference/pi (= diameter) + 2*shoulder deep
-        human.shoulder_deep             = 12.3;
+        human.shoulder_deep             = 12.3; %sind das nicht 13
         human.chest_circumference       = 104;
         human.waist_circumference       = 88;
         human.hip_circumference         = 109;
-        human.arm_length                = 61.6;
+        human.arm_length                = 61.1;
         human.circumference_upper_arm   = 32.8;
         human.wrist_circumference       = 17.4;
         human.armhole_depth             = 21.7;
         
+   elseif size == 48
+        human.back_length               = 42.7;
+        human.seat_length               = 21.6;
+        human.rear_shoulder_width       = 39.6/pi+2*13.2; %neck circumference/pi (= diameter) + 2*shoulder deep
+        human.shoulder_deep             = 13.2;
+        human.chest_circumference       = 110;
+        human.waist_circumference       = 94.5;
+        human.hip_circumference         = 114;
+        human.arm_length                = 61.4;
+        human.circumference_upper_arm   = 34.6;
+        human.wrist_circumference       = 18;
+        human.armhole_depth             = 22.1;
+        
+   elseif size == 50
+        human.back_length               = 43;
+        human.seat_length               = 21.8;
+        human.rear_shoulder_width       = 40.8/pi+2*13.4; %neck circumference/pi (= diameter) + 2*shoulder deep
+        human.shoulder_deep             = 13.4;
+        human.chest_circumference       = 116;
+        human.waist_circumference       = 101;
+        human.hip_circumference         = 119;
+        human.arm_length                = 61.7;
+        human.circumference_upper_arm   = 36.4;
+        human.wrist_circumference       = 18.6;
+        human.armhole_depth             = 22.5;
+        
+   elseif size == 52
+        human.back_length               = 43.3;
+        human.seat_length               = 22;
+        human.rear_shoulder_width       = 42/pi+2*13.6; %neck circumference/pi (= diameter) + 2*shoulder deep
+        human.shoulder_deep             = 13.6;
+        human.chest_circumference       = 122;
+        human.waist_circumference       = 107.5;
+        human.hip_circumference         = 124;
+        human.arm_length                = 62;
+        human.circumference_upper_arm   = 38.2;
+        human.wrist_circumference       = 19.2;
+        human.armhole_depth             = 22.9;
+         
+    elseif size == 54
+        human.back_length               = 43.6;
+        human.seat_length               = 22.2;
+        human.rear_shoulder_width       = 43.2/pi+2*13.8; %neck circumference/pi (= diameter) + 2*shoulder deep
+        human.shoulder_deep             = 13.8;
+        human.chest_circumference       = 128;
+        human.waist_circumference       = 114;
+        human.hip_circumference         = 129;
+        human.arm_length                = 62.3;
+        human.circumference_upper_arm   = 40;
+        human.wrist_circumference       = 19.8;
+        human.armhole_depth             = 23.3;
+        
+    elseif size == 56
+        human.back_length               = 43.6;
+        human.seat_length               = 22.4;
+        human.rear_shoulder_width       = 44.4/pi+2*14; %neck circumference/pi (= diameter) + 2*shoulder deep
+        human.shoulder_deep             = 14;
+        human.chest_circumference       = 134;
+        human.waist_circumference       = 120.5;
+        human.hip_circumference         = 134;
+        human.arm_length                = 62.3;
+        human.circumference_upper_arm   = 41.8;
+        human.wrist_circumference       = 20.4;
+        human.armhole_depth             = 23.7;
+        
+    elseif size == 58
+        human.back_length               = 43.6;
+        human.seat_length               = 22.6;
+        human.rear_shoulder_width       = 45.6/pi+2*14.2; %neck circumference/pi (= diameter) + 2*shoulder deep
+        human.shoulder_deep             = 14.2;
+        human.chest_circumference       = 140;
+        human.waist_circumference       = 127;
+        human.hip_circumference         = 139;
+        human.arm_length                = 62.3;
+        human.circumference_upper_arm   = 43.6;
+        human.wrist_circumference       = 21;
+        human.armhole_depth             = 24.1;
+        
+    elseif size == 60
+        human.back_length               = 43.6;
+        human.seat_length               = 22.8;
+        human.rear_shoulder_width       = 46.8/pi+2*14.4; %neck circumference/pi (= diameter) + 2*shoulder deep
+        human.shoulder_deep             = 14.4;
+        human.chest_circumference       = 146;
+        human.waist_circumference       = 133.5;
+        human.hip_circumference         = 144;
+        human.arm_length                = 62.3;
+        human.circumference_upper_arm   = 45.4;
+        human.wrist_circumference       = 21.6;
+        human.armhole_depth             = 24.5;
         %% todo: add size 48-60, then change max values in create_human_from_measurement, plot_all_sizes and error message
     
     else
-        error('Invalid size input for women. Valid input is size 32, 34, 36, 38, 40 and 46.')
+        error('Invalid size input for women. Valid input is size 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58 and 60.')
     end
         
     %values: Gilewska P.17

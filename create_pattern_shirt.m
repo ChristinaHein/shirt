@@ -1,5 +1,5 @@
 function pattern = create_pattern_shirt(human, varargin)
-%% create_pattern_shirt(human, [fit, sleeve_length, neckline]) - creates a pattern of a shirt
+%% create_pattern_shirt(human, [fit, sleeve_length, neckline, hemtype]) - creates a pattern of a shirt
 % (created by Christina M. Hein, 2019-April-24)
 % (last changes by Christina M. Hein, 2019-August-09)
 %
@@ -7,7 +7,7 @@ function pattern = create_pattern_shirt(human, varargin)
 % shirt and other necessary information (e.g. material, part names). This
 % pattern can be used to create all necessary production files.
 %
-% pattern = create_pattern_shirt(human, [fit, sleeve_length, material])
+% pattern = create_pattern_shirt(human, [fit, sleeve_length, neckline, hemtype])
 %
 % === INPUT ARGUMENTS ===
 % human             = struct of type human (name, type, body dimensions)
@@ -15,6 +15,7 @@ function pattern = create_pattern_shirt(human, varargin)
 % sleeve length     = 'sleeveless', 'short', '3/4sleeves', 'long' , default
 %                      is long
 % neckline          = 'round' or 'v', default is 'round'
+% hemtype           = 'plain_hem' (folded) or 'simple_cuff'
 
 % === OUTPUT ARGUMENTS ===
 % pattern     = struct containing PL of construction points, CPLs of basic 
@@ -31,22 +32,28 @@ if numvarargs > 4
 end
 
 % set defaults for optional inputs
-optargs = {'regular' 'long' 'round'};
+optargs = {'regular' 'long' 'round' 'plain_hem'};
 optargs(1:numvarargs) = varargin;
-[fit, sleeve_length, neckline] =  optargs{:};
+[fit, sleeve_length, neckline, hemtype] =  optargs{:};
 
 %% write pattern properties
 pattern.property.type = human.type;
 pattern.property.fit = fit;
 pattern.property.sleeve_length = sleeve_length;
 pattern.property.neckline = neckline;
+pattern.property.hemtype = hemtype;
     
 %% Ininialization and parameters
 pattern.part_names=[];
 pattern.basic_pattern=[];
 pattern.production_pattern=[];
 seam = 1; 
-hem = 2;
+
+if strcmp(hemtype,'plain_hem')
+    hem = 2;
+elseif strcmp(hemtype,'simple_cuff')
+    hem = 4+3*seam; % 4 cm width cuff
+end
 
 if strcmp(fit,'slim')
     pattern.construction_dimensions.fit_allowance = -2;
@@ -196,9 +203,11 @@ if pattern.construction_dimensions.sl > 0
     pattern = create_production_pattern_sleeve(pattern, seam, hem);
 end
 
-%% create cuffs neckline for v-neck
+%% create cuffs neckline for v-neck or simple cuffs
 if pattern.construction_dimensions.neckline ~= 0
     pattern = create_production_pattern_cuffs_neckline_simple(pattern, seam);
-    pattern = create_production_pattern_cuffs_neckline_fine(pattern);
+    pattern = create_production_pattern_cuffs_neckline(pattern, 10); %fine cuff
+elseif strcmp(hemtype,'simple_cuff')
+    pattern = create_production_pattern_cuffs_neckline(pattern, seam, 0.8); 
 end
 

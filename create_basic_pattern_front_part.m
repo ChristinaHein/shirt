@@ -36,6 +36,8 @@ if pattern.construction_dimensions.neckline == 0 % round neckline
     PL = [PL; pattern.construction_points.a2+[pattern.construction_dimensions.cm_nf 0]];
     PL = PLBezier3P(PL(1,:),PL(2,:),PL(3,:),30);
     pattern.basic_pattern = [pattern.basic_pattern; pattern.construction_points.F; PL];
+    %parameters for cuffs neckline
+    pattern.construction_points.necklength_front = PLCurveLength(PL);
 else % v neckline
     pattern.construction_points.neck = pattern.construction_points.a4+[-pattern.construction_dimensions.neckline(1) 0];
     PL = pattern.construction_points.neck;
