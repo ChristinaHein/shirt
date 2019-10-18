@@ -25,7 +25,7 @@ The pattern will be written into a SVG-file. This file can be transferred direct
 * waistband
 * one piece of paper
 
-A tutorial how to take the measurements and a dimension sheet will follow soon.
+A [`dimension sheet`](/Dimensionsheet.pdf) including a tutorial how to take the measurements is avaible.
 
 ### ... to run the code on my computer?
 
