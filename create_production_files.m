@@ -33,6 +33,10 @@ PL = PL.*10; % from cm to mm
 PL = [1 0; 0 -1]*PL'; PL = PL'; % mirror on x-axis
 filename = fullfile(directory, 'Front_Part');
 PLwriteSVG2(PL, 'fName', filename);
+filename = fullfile(directory, 'Front_Part.dxf');
+FID = dxf_open(filename);
+dxf_polyline(FID,PL(:,1),PL(:,2),zeros(length(PL),1));
+dxf_close(FID);
 
 % back part
 position = find(pattern.part_names == 'back_part');
@@ -48,6 +52,10 @@ PL = PL.*10; % from cm to mm
 %PL = [-1 0; 0 1]*PL'; PL = PL'; % rotation 180 deg
 filename = fullfile(directory, 'Back_Part');
 PLwriteSVG2(PL, 'fName', filename);
+filename = fullfile(directory, 'Back_Part.dxf');
+FID = dxf_open(filename);
+dxf_polyline(FID,PL(:,1),PL(:,2),zeros(length(PL),1));
+dxf_close(FID);
 
 % sleeve
 position = find(pattern.part_names == 'sleeve');
@@ -64,6 +72,10 @@ if ~isempty(position)
     PL = [0 -1; 1 0]*PL'; PL = PL'; % rotation 90 deg
     filename = fullfile(directory, 'Sleeve');
     PLwriteSVG2(PL, 'fName', filename);
+    filename = fullfile(directory, 'Sleeve.dxf');
+    FID = dxf_open(filename);
+    dxf_polyline(FID,PL(:,1),PL(:,2),zeros(length(PL),1));
+    dxf_close(FID);
 end
 
 % cuffs neckline
@@ -80,6 +92,10 @@ if ~isempty(position)
     PL = PL.*10; % from cm to mm
     filename = fullfile(directory, 'Cuffs_neckline_simple');
     PLwriteSVG2(PL, 'fName', filename);
+    filename = fullfile(directory, 'cuffs_neckline_simple.dxf');
+    FID = dxf_open(filename);
+    dxf_polyline(FID,PL(:,1),PL(:,2),zeros(length(PL),1));
+    dxf_close(FID);
 end
 
 position = find(pattern.part_names == 'cuffs_neckline');
@@ -95,6 +111,10 @@ if ~isempty(position)
     PL = PL.*10; % from cm to mm
     filename = fullfile(directory, 'Cuffs_neckline');
     PLwriteSVG2(PL, 'fName', filename);
+    filename = fullfile(directory, 'cuffs_neckline.dxf');
+    FID = dxf_open(filename);
+    dxf_polyline(FID,PL(:,1),PL(:,2),zeros(length(PL),1));
+    dxf_close(FID);
 end
 
 %% create label
