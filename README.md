@@ -33,6 +33,7 @@ Matlab (2018b or newer) with Computer Vision Toolbox
 
 SG Library (https://github.com/timlueth/SG-Lib-Matlab-Toolbox)
 
+DXFLib (https://de.mathworks.com/matlabcentral/fileexchange/33884-dxflib)
 
 ## Usage
 
@@ -44,5 +45,5 @@ See [`Example.m`](./Example.m)
 
 ## Thank you
 
-* Prof. Dr. Lüth [@timlueth](https://github.com/timlueth) for the introduction of data types like point lists (PL) and closed point lists (CPL) and of course for the provision of a large number of functions to handle them within the SG-Library.
+* Prof. Dr. Tim Lüth [@timlueth](https://github.com/timlueth) for the introduction of data types like point lists (PL) and closed point lists (CPL) and of course for the provision of a large number of functions to handle them within the SG-Library.
 * Dr. Matthias Träger for the basic code for the generation of SVG files from point lists (see function [`PLwriteSVG2`](./PLwriteSVG2.m)).
