@@ -105,6 +105,7 @@ pattern.construction_dimensions.cm_sf = 3; % shoulder front
 pattern.construction_dimensions.cm_nb = 2; % neck back
 pattern.construction_dimensions.cm_sb = 2; % shoulder back
 pattern.construction_dimensions.cm_am = human.chest_circumference/24+1; % armhole measurement
+pattern.construction_dimensions.f = 1.16;
 % corrections on armhole measurment according to Hofenbitzer (S. 11): 1/3
 if human.chest_circumference <= 89
     pattern.construction_dimensions.cm_am = pattern.construction_dimensions.cm_am -0.5;
@@ -137,8 +138,8 @@ pattern.construction_points.D = [-human.back_length 0];
 pattern.construction_points.C1 = [pattern.construction_points.C(1) pattern.construction_points.b3(2)];
 pattern.construction_points.D1 = [pattern.construction_points.D(1) pattern.construction_points.a1(2)];
 
-pattern.construction_points.E = pattern.construction_points.C-[human.seat_length 0];
-pattern.construction_points.F = pattern.construction_points.D-[human.seat_length 0];
+pattern.construction_points.E = pattern.construction_points.C-[human.seat_length*pattern.construction_dimensions.f 0];
+pattern.construction_points.F = pattern.construction_points.D-[human.seat_length*pattern.construction_dimensions.f 0];
 
 pattern.construction_points.E1 = [pattern.construction_points.E(1) pattern.construction_points.b3(2)];
 pattern.construction_points.F1 = [pattern.construction_points.F(1) pattern.construction_points.a1(2)];
