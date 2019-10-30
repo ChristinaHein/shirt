@@ -1,4 +1,4 @@
-function create_production_files_lc(human, pattern)
+function directory = create_production_files_lc(human, pattern)
 %% create_production_files_lc - creates production files for laser cutting
 % (created by Christina M. Hein, 2019-May-15)
 % (last changes by Christina M. Hein, 2019-October-28)

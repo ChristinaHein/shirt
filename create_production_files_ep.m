@@ -1,4 +1,4 @@
-function create_production_files_ep(human, pattern)
+function directory = create_production_files_ep(human, pattern)
 %% create_production_files_lc - creates production files for external production
 % (created by Christina M. Hein, 2019-October-28)
 % (last changes by Christina M. Hein, --)
@@ -8,8 +8,6 @@ function create_production_files_ep(human, pattern)
 % of the object human 'Production_Files_lc_name' in the working directory:
 % - dxf-file containing the pattern
 % - object human with measurement data (for documentation)
-% - txt-file with order (to be send by Mail)
-% - pdf-file with step-by-step-tutorial for cutting and sewing
 % 
 %
 % create_production_files_ep(human, pattern)
@@ -165,7 +163,7 @@ dxf_polyline(FID,PL(:,1),PL(:,2),zeros(length(PL),1));
 
 dxf_close(FID)
 %% save human for documentation
-fname = strcat(directory,'/',d,'_Measurement_Data',human.name);
+fname = strcat(directory,'/',d,'_Measurement_Data_',human.name);
 save(fname,'human');
 
 %% save dart length

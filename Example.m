@@ -27,7 +27,11 @@ plot_production_pattern(pattern)
 
 % plot_all_sizes(pattern);
 
-%% create production files
+%% create production files 
+% directly
 create_production_files_lc(human_example, pattern); % laser cutter
 create_production_files_ep(human_example, pattern); % external production
+
+% or geht help (name of suppliers, tutorials, etc.)
+help_on_fabrication(human_exampel, pattern)
 
