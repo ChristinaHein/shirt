@@ -17,7 +17,7 @@ The following options are already included:
 * sleeves: sleeveless, short, 3/4 sleeves, long
 
 ## Which kind of files do I get and how can I use the pattern to cut the fabric?
-The pattern will be written into a SVG-file. This file can be transferred directly to a laser cutter for cutting. But if you don't have access to such a machine, you can also plot the file on paper and transfer it to the fabric as usual.
+The pattern will be written into a SVG-file or DCF-file. These files can be used these files can be used for machine cutting using knives or laser cutters. But if you don't have access to such a machine, you can also plot the file on paper and transfer it to the fabric as usual.
 
 ## What do I need...
 ### ... to take the body dimensions?
