@@ -111,8 +111,16 @@ switch cut
                 fprintf('The estimated costs for cutting are 75€.\n');
                 fprintf('A tutorial for sewing is currently being prepared and is avaiable soon.\n')
             case 'order'
+                if strcmp(pattern.property.hemtype, 'plain_hem') && strcmp(order, 'one')
+                        warning('The external sewing of a shirt with a plain hem can only by done by two suppliers.' ...
+                         'For one supplier you need to change your hem type to simple_cuff.' ...
+                         'You will now get all instructions you need to fabricate your selected shirt with two suppliers instead.');
+                       order = 'two';
+                end
                 switch order
                     case 'one'
+                        
+                         
                         % order E-Mail
                         filename = fullfile(directory, 'Order_mail_cutting_sewing.txt');
                         fid = fopen(filename,'w');

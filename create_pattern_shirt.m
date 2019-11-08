@@ -53,6 +53,8 @@ if strcmp(hemtype,'plain_hem')
     hem = 2;
 elseif strcmp(hemtype,'simple_cuff')
     hem = 4+3*seam; % 4 cm width cuff
+else
+    error('create_pattern_shirt: Invalid input for hemtype. Valid input is plain_hem and simple_cuff');
 end
 
 if strcmp(fit,'slim')
@@ -118,18 +120,19 @@ elseif human.chest_circumference >=120
 end
 pattern.construction_dimensions.cm_cm = 6; % clip mark sleeve-back part
 pattern.construction_dimensions.cm_cc = 0.2; % clip cut length
-pattern.construction_dimensions.cm_cuff = 4; % cuffs width for v-neck
+pattern.construction_dimensions.cm_cuff = 4; % cuffs pattern width for v-neck
+pattern.construction_dimensions.cm_cuff_width = (pattern.construction_dimensions.cm_cuff-2*seam)/2; % width of final cuff
 
 %% create construction points (struct) for torso
 pattern.construction_points.A  = [0 0];
 pattern.construction_points.a1 = [0,(human.chest_circumference+pattern.construction_dimensions.fit_allowance)/4];
-pattern.construction_points.a2 = [0,human.rear_shoulder_width/5];
+pattern.construction_points.a2 = [0,human.rear_shoulder_width/5+pattern.construction_dimensions.cm_cuff_width];
 pattern.construction_points.a3 = [0,human.rear_shoulder_width/2];
-pattern.construction_points.a4 = [-human.rear_shoulder_width/5,0];
+pattern.construction_points.a4 = [-human.rear_shoulder_width/5-pattern.construction_dimensions.cm_cuff_width,0];
 
 pattern.construction_points.b3 = pattern.construction_points.a1 + [0 pattern.construction_dimensions.cm_dp];
 pattern.construction_points.B  = pattern.construction_points.b3 + [0 (human.chest_circumference+pattern.construction_dimensions.fit_allowance)/4];
-pattern.construction_points.b1 = pattern.construction_points.B - [0,human.rear_shoulder_width/5];
+pattern.construction_points.b1 = pattern.construction_points.B - [0,human.rear_shoulder_width/5+pattern.construction_dimensions.cm_cuff_width];
 pattern.construction_points.b2 = pattern.construction_points.B - [0,human.rear_shoulder_width/2];
 
 pattern.construction_points.C = [-human.back_length pattern.construction_points.B(2)];
@@ -208,7 +211,7 @@ end
 if pattern.construction_dimensions.neckline ~= 0
     pattern = create_production_pattern_cuffs_neckline_simple(pattern, seam);
     pattern = create_production_pattern_cuffs_neckline(pattern, 10); %fine cuff
-elseif strcmp(hemtype,'simple_cuff')
+else
     pattern = create_production_pattern_cuffs_neckline(pattern, seam, 0.8); 
 end
 
