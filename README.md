@@ -37,7 +37,7 @@ DXFLib (https://de.mathworks.com/matlabcentral/fileexchange/33884-dxflib)
 
 ## Usage
 
-See [`Example.m`](./Example.m)
+See [`Example1_Create_Pattern.m`](./Example1_Create_Pattern.m) and [`Example2_Shirt_for_fabrication.m`](./Example2_Shirt_for_fabrication.m)
 
 ## References
 * Vivien Altmann: Schnittmuster für elastische Stoffe erstellen 1: Grundschnitt für T-Shirts, Online Tutorial https://www.makerist.de/courses/schnittmuster-fuer-elastische-stoffe-erstellen-1-grundschnitt-fuer-t-shirts.
