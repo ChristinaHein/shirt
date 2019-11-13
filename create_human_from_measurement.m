@@ -110,8 +110,8 @@ elseif nargin == 11
         error('Invalid type input. Set type to: male, female or child.')
     end
         
-    for i = 3:length(variables)
-        human.(variables(i)) = varargin{i};
+    for i = 3:length(variables)+2
+        human.(variables(i-2)) = varargin{i};
     end
 
 %% error if wrong number of inputs
