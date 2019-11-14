@@ -1,8 +1,9 @@
-%% Exampel: How to use functions to create all files for  a made-to-measure shirt
-%
+%% Exampel 2: How to use functions to create all files for  a made-to-measure shirt
 % written by Christina Hein, 11/2019
 
-close all; clc; clear all;
+%% initial state
+close all; clc; clear all; 
+warning('off','all');
 
 %% take measurements
 % Open dimensionsheet for measurement description and note 
@@ -11,7 +12,7 @@ open('Dimensionsheet.pdf');
 %% create struct of type 'human' for individual measurements
 
 % option 1: direct function input
-human_example = create_human_from_measurement('Sam Sample','female', 33, 23, 40, 87, 63.5, 90.5, 58, 24.4, 15);
+human_example = create_human_from_measurement('Sam Sample','female', 33, 23, 40, 87, 63.5, 90.5, 58, 24.4, 15)
  
 % option 2: input help
 % human_example = create_human_from_measurement;

@@ -1,8 +1,9 @@
-%% Exampel: How to use functions to create a made-to-measure shirt
-%
+%% Exampel 1: How to use functions to create patten of made-to-measure shirt
 % written by Christina Hein, 09/2019
 
+%% inital state
 close all; clc; clear all;
+warning('off','all');
 
 %% create struct of type 'human' 
 
