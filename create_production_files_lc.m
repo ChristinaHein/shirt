@@ -1,5 +1,5 @@
-function directory = create_production_files_lc(human, pattern)
-%% create_production_files_lc - creates production files for laser cutting
+function directory = create_production_files_lc(human, pattern, varargin)
+%% directory = create_production_files_lc(human, pattern, [directory]) - creates production files for laser cutting
 % (created by Christina M. Hein, 2019-May-15)
 % (last changes by Christina M. Hein, 2019-October-28)
 %
@@ -19,9 +19,10 @@ function directory = create_production_files_lc(human, pattern)
 % pattern           = struct for pattern, yet filled with construction
 %                     points and optionally with other part's basic pattern
 %                     created by create_pattern_shirt
+% directory         = directory name (string)
 %
 % === OUTPUT ARGUMENTS ===
-% 
+% directory         = directory name (string)
 %
 %% check name
 % replace ä,ö,ü,ß
@@ -40,7 +41,12 @@ end
 
 %% make directory
 d = date;
-directory = strcat(d,'_Production_Files_lc_',human.name);
+if length(varargin)==0 % create directory name if no directory as input argument
+    directory = strcat(d,'_Production_Files_lc_',human.name);
+else % or use directory input name
+    directory = varargin{1};
+end
+
 mkdir(directory);
 
 %% create svg-file of pattern

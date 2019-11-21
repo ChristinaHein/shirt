@@ -1,5 +1,5 @@
-function directory = create_production_files_ep(human, pattern)
-%% create_production_files_lc - creates production files for external production
+function directory = create_production_files_ep(human, pattern, varargin)
+%% directory = create_production_files_ep(human, pattern, [directory]) - creates production files for external production
 % (created by Christina M. Hein, 2019-October-28)
 % (last changes by Christina M. Hein, --)
 %
@@ -17,8 +17,10 @@ function directory = create_production_files_ep(human, pattern)
 % pattern           = struct for pattern, yet filled with construction
 %                     points and optionally with other part's basic pattern
 %                     created by create_pattern_shirt
+% directory         = directory name (string)
 %
 % === OUTPUT ARGUMENTS ===
+% directory         = directory name (string)
 % 
 %
 %% check name
@@ -38,7 +40,11 @@ end
 
 %% make directory
 d = date;
-directory = strcat(d,'_Production_Files_ep_',human.name);
+if length(varargin)==0 % create directory name if no directory as input argument
+    directory = strcat(d,'_Production_Files_ep_',human.name);
+else
+    directory = varargin{1};
+end
 mkdir(directory);
 
 %% save dxf-file with pattern

@@ -35,11 +35,14 @@ function pattern = shirt_extern_production_one(human, fit, sleeves)
 pattern = create_pattern_shirt(human, fit, sleeves, 'round','simple_cuff');
 
 if nargout == 0
+    figure
     plot_basic_pattern(pattern);
     plot_production_pattern(pattern)
 end
 
-directory = create_production_files_ep(human, pattern);
+d = date;
+directory = strcat(d,'_Production_Files_ep_one_',human.name);
+create_production_files_ep(human, pattern, directory);
 fprintf('A folder with the name %s was created with all files for your chosen fabrication type. \n', directory);
 
 %% Label adress
@@ -63,4 +66,6 @@ fclose(fid);
 disp('-----------------------------------------------------------------')
 fprintf('Please send the dxf-files to info@waldmann-textech.de.\n');
 fprintf('The pattern as dxf-file, an order E-Mail and a label with the adress (if you need to send fabric) were created. \n');
+disp('-----------------------------------------------------------------')
+disp('-----------------------------------------------------------------')
 end

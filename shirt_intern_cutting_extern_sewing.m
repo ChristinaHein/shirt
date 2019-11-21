@@ -39,7 +39,10 @@ if nargout == 0
     plot_production_pattern(pattern)
 end
 
-directory = create_production_files_lc(human, pattern);
+d = date;
+directory = strcat(d,'_Production_Files_ices_',human.name);
+
+create_production_files_lc(human, pattern,directory);
 fprintf('A folder with the name %s was created with all files for your chosen fabrication type. \n', directory);
 
 %% Label adress
@@ -61,5 +64,7 @@ fclose(fid);
 disp('-----------------------------------------------------------------')
 fprintf('Please send the cut parts to the tailor (including return postage) or hand them in personally.\n');
 fprintf('A label with the adress and a order letter was created. The opening hours are Thu-Fri 9:00am - 17:00pm.\n');
+disp('-----------------------------------------------------------------')
+disp('-----------------------------------------------------------------')
 
 end

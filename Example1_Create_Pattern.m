@@ -22,18 +22,18 @@ human_example = create_human_from_measurement('Sam Sample','female', 33, 23, 40,
 % load('human_example.mat');
 
 %% create pattern
-pattern = create_pattern_shirt(human_example, 'slim', 'long', 'round','simple_cuff');
+pattern = create_pattern_shirt(human_example, 'slim', 'long', 'round','plain_hem');
 
 plot_basic_pattern(pattern);
 plot_production_pattern(pattern)
 
 %% optional: visual check of pattern
 % plot_construction_points(pattern); hold on;
-% plot_construction_points_sleeve(pattern);
+plot_construction_points_sleeve(pattern);
 
-plot_all_sizes(pattern);
+% plot_all_sizes(pattern);
 
 %% create production files 
-create_production_files_lc(human_example, pattern); % laser cutter
-%create_production_files_ep(human_example, pattern); % external production
+%create_production_files_lc(human_example, pattern); % laser cutter
+create_production_files_ep(human_example, pattern); % external production
 

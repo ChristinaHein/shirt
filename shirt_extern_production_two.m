@@ -39,7 +39,10 @@ if nargout == 0
     plot_production_pattern(pattern)
 end
 
-directory = create_production_files_ep(human, pattern);
+d = date;
+directory = strcat(d,'_Production_Files_ep_two_',human.name);
+
+create_production_files_ep(human, pattern, directory);
 fprintf('A folder with the name %s was created with all files for your chosen fabrication type. \n', directory);
 
 %% Label adress and Mail cutting
@@ -81,4 +84,6 @@ fprintf('Step 1: Please send the dxf-files to info@waldmann-textech.de.\n');
 fprintf('The pattern as dxf-file, an order E-Mail and a label with the adress (if you need to send fabric) were created. \n');
 fprintf('Step 2: As soon as you receive the cutted parts please send the cut parts to the tailor (including return postage) or hand them in personally.\n');
 fprintf('A label with the adress and a order letter was created. The opening hours are Thu-Fri 9:00am - 17:00pm.\n');
+disp('-----------------------------------------------------------------')
+disp('-----------------------------------------------------------------')
 end

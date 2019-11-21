@@ -38,8 +38,13 @@ if nargout == 0
     plot_production_pattern(pattern)
 end
 
-directory = create_production_files_lc(human, pattern);
+d = date;
+directory = strcat(d,'_Production_Files_ip_',human.name);
+create_production_files_lc(human, pattern, directory);
+disp('-----------------------------------------------------------------')
 fprintf('A folder with the name %s was created with all files for your chosen fabrication type. \n', directory);
+disp('-----------------------------------------------------------------')
+disp('-----------------------------------------------------------------')
 % Tutorial cutting and sewing
 %disp('You can use them to directly cut the fabric with a laser cutter. A tutorial can be found in the same folder');
 end

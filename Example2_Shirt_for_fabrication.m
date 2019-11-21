@@ -43,17 +43,17 @@ plot_production_pattern(pattern);
 shirt_intern_cutting_extern_sewing(human_example, fit, sleeve);
 
 %% c) prepare external cutting and sewing at TWO suppliers
-% cutting: Waldman Textech ~ 90 Euro
+% cutting: Waldman Textech ~ 120 Euro
 % sewing: Tailor ~ 40 Euro
 % material costs for 2 m fabric ~ 20 Euro
-% estimated costs: 150 Euro
+% estimated costs: 180 Euro
 
 shirt_extern_production_two(human_example, fit, sleeve);
 
 %% d) prepare external cutting and sewing at ONE supplier
-% cutting and sewing: Waldmann Textech ~ 250 Euro
+% cutting and sewing: Waldmann Textech ~ 300 Euro
 % material costs for 2 m fabric ~ 20 Euro
-% estimated costs: 270 Euro
+% estimated costs: 320 Euro
 
 shirt_extern_production_one(human_example, fit, sleeve);
 
