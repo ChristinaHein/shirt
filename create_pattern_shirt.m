@@ -15,7 +15,7 @@ function pattern = create_pattern_shirt(human, varargin)
 % sleeve length     = 'sleeveless', 'short', '3/4sleeves', 'long' , default
 %                      is long
 % neckline          = 'round' or 'v', default is 'round'
-% hemtype           = 'plain_hem' (folded) or 'simple_cuff'
+% hemtype           = 'plain_hem' (folded), 'simple_cuff' or 'rolled_hem'
 
 % === OUTPUT ARGUMENTS ===
 % pattern     = struct containing PL of construction points, CPLs of basic 
@@ -51,10 +51,12 @@ seam = 1;
 
 if strcmp(hemtype,'plain_hem')
     hem = 2;
+elseif strcmp(hemtype,'rolled_hem')
+    hem = 0.5;
 elseif strcmp(hemtype,'simple_cuff')
     hem = 4+3*seam; % 4 cm width cuff
 else
-    error('create_pattern_shirt: Invalid input for hemtype. Valid input is plain_hem and simple_cuff');
+    error('create_pattern_shirt: Invalid input for hemtype. Valid input is plain_hem, simple_cuff or rolled_hem ');
 end
 
 if strcmp(fit,'slim')
