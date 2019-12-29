@@ -47,12 +47,12 @@ else
 end
 mkdir(directory);
 
-%% save dxf-file with pattern
+%% create dxf-file for pattern
 filename = fullfile(directory, 'Production_pattern_all_parts.dxf');
 FID = dxf_open(filename);
 separator = [1; find(isnan(pattern.production_pattern(:,1)) & isnan(pattern.production_pattern(:,2)))];
 
-%% create dxf-file of pattern
+%% create dxf-file with pattern
 pattern.construction_dimensions.cm_d = 50; %distance between parts
 
 % front part

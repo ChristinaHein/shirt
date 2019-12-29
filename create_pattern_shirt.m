@@ -48,6 +48,7 @@ pattern.part_names=[];
 pattern.basic_pattern=[];
 pattern.production_pattern=[];
 seam = 1; 
+pattern.construction_dimensions.seam = seam;
 
 if strcmp(hemtype,'plain_hem')
     hem = 2;
@@ -58,6 +59,7 @@ elseif strcmp(hemtype,'simple_cuff')
 else
     error('create_pattern_shirt: Invalid input for hemtype. Valid input is plain_hem, simple_cuff or rolled_hem ');
 end
+pattern.construction_dimensions.hem = hem;
 
 if strcmp(fit,'slim')
     pattern.construction_dimensions.fit_allowance = -2;

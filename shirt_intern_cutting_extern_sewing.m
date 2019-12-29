@@ -43,6 +43,24 @@ d = date;
 directory = strcat(d,'_Production_Files_ices_',human.name);
 
 create_production_files_lc(human, pattern,directory);
+
+%% copy only tutorials for cutting
+tutorialfolder = strcat(directory,'/Tutorials');
+rmdir(tutorialfolder, 's');
+mkdir(tutorialfolder);
+% Important information
+destination = strcat(tutorialfolder,'/1_Important_information.pdf');
+if strcmp(pattern.property.hemtype, 'simple_cuff')
+    copyfile('Tutorials_templates/01a_Important_information_cuff.pdf', destination);
+elseif strcmp(pattern.property.hemtype, 'plain_hem')
+    copyfile('Tutorials_templates/01b_Important_information_hem.pdf', destination);
+elseif strcmp(pattern.property.hemtype, 'rolled_hem')
+    copyfile('Tutorials_templates/01c_Important_information_rolled_hem.pdf', destination);
+end
+
+% cutting
+copyfile('Tutorials_templates/02_Cut.pdf', strcat(tutorialfolder,'/2_Cut.pdf'));
+
 fprintf('A folder with the name %s was created with all files for your chosen fabrication type. \n', directory);
 
 %% Label adress
@@ -56,7 +74,8 @@ filename = fullfile(directory, 'Order_tailor.txt');
 fid = fopen(filename,'w');
 fprintf(fid,'Altenburger Anja \nMass u. Aenderungsschneiderei \nGruenwalder Str. 24 \n81547 Muenchen \n\n\n');
 fprintf(fid,'Sehr geehrte Frau Altenburger,\n\nbitte naehen Sie aus den angefuegten Schnittmusterteilen ein Shirt.\n');
-fprintf(fid,'Das fertige Shirt senden Sie bitte an: \n ADRESSE');
+fprintf(fid,'Die Nahtzugabe beträgt %d cm und die Saumzugabe %d cm.\n', pattern.construction_dimensions.seam,pattern.construction_dimensions.hem);
+fprintf(fid,'Das fertige Shirt senden Sie bitte an: \n ADRESSE\n\n');
 fprintf(fid,'Mit freundlichen Gruessen\n NAME');
 fclose(fid);
 

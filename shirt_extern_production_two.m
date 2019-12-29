@@ -74,7 +74,8 @@ filename = fullfile(directory, 'Order_tailor.txt');
 fid = fopen(filename,'w');
 fprintf(fid,'Altenburger Anja \nMass u. Aenderungsschneiderei \nGruenwalder Str. 24 \n81547 Muenchen \n\n\n');
 fprintf(fid,'Sehr geehrte Frau Altenburger,\n\nbitte naehen Sie aus den angefuegten Schnittmusterteilen ein Shirt.\n');
-fprintf(fid,'Das fertige Shirt senden Sie bitte an: ADRESSE\n\n');
+fprintf(fid,'Die Nahtzugabe beträgt %d cm und die Saumzugabe %d cm.\n', pattern.construction_dimensions.seam,pattern.construction_dimensions.hem);
+fprintf(fid,'Das fertige Shirt senden Sie bitte an: \n ADRESSE\n\n');
 fprintf(fid,'Mit freundlichen Gruessen\n NAME');
 fclose(fid);
 
