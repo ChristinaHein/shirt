@@ -165,6 +165,7 @@ end
 
 % cutting
 copyfile('Tutorials_templates/02_Cut.pdf', strcat(directory,'/2_Cut.pdf'));
+copyfile('Tutorials_templates/Help-Terminology_fabric_cutting.pdf', strcat(directory,'/Help-Terminology_fabric_cutting.pdf'));
 
 % Breast dart
 n=3;

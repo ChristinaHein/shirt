@@ -60,6 +60,7 @@ end
 
 % cutting
 copyfile('Tutorials_templates/02_Cut.pdf', strcat(tutorialfolder,'/2_Cut.pdf'));
+copyfile('Tutorials_templates/Help-Terminology_fabric_cutting.pdf', strcat(tutorialfolder,'/Help-Terminology_fabric_cutting.pdf'));
 
 fprintf('A folder with the name %s was created with all files for your chosen fabrication type. \n', directory);
 
