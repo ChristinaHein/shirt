@@ -62,7 +62,7 @@ if strcmp(human.type,'male') && pattern.construction_dimensions.fit_allowance > 
     PL = [PL; pattern.construction_points.E(1),min(pattern.construction_points.e1(2),pattern.construction_points.E1(2))];
 else % waisted basic cut for women and slim fit for men    
     PL = [pattern.construction_points.x2];
-    PL = [PL; pattern.construction_points.C+[0 -(human.waist_circumference +pattern.construction_dimensions.fit_allowance)/4]];
+    PL = [PL; pattern.construction_points.C+[0 -(human.waist_circumference*(1+pattern.construction_dimensions.fit_allowance))/4]];
     PL = [PL; pattern.construction_points.e1+[6,0]];
     PL = [PL; pattern.construction_points.e1];
     PL = PLaddauxpoints(PL,human.seat_length*0.1);

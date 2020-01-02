@@ -1,5 +1,5 @@
 function pattern = create_pattern_shirt(human, varargin)
-%% create_pattern_shirt(human, [fit, sleeve_length, neckline, hemtype]) - creates a pattern of a shirt
+%% create_pattern_shirt(human, [fit, sleeve_length, neckline, hemtype, fabric_elasticity]) - creates a pattern of a shirt
 % (created by Christina M. Hein, 2019-April-24)
 % (last changes by Christina M. Hein, 2019-August-09)
 %
@@ -11,11 +11,12 @@ function pattern = create_pattern_shirt(human, varargin)
 %
 % === INPUT ARGUMENTS ===
 % human             = struct of type human (name, type, body dimensions)
-% fit               = 'slim', 'regular', 'wide', default is regular
+% fit               = 'extra_slim', 'slim', 'regular', 'wide', default is regular
 % sleeve length     = 'sleeveless', 'short', '3/4sleeves', 'long' , default
 %                      is long
 % neckline          = 'round' or 'v', default is 'round'
 % hemtype           = 'plain_hem' (folded), 'simple_cuff' or 'rolled_hem'
+% fabric_elasticity = elasticity of the fabric at which the initial dimension is reached again (in %) 
 
 % === OUTPUT ARGUMENTS ===
 % pattern     = struct containing PL of construction points, CPLs of basic 
@@ -25,16 +26,16 @@ function pattern = create_pattern_shirt(human, varargin)
 % see create_human_from_measurement, create_human_from_size
 
 %% set default values
-% only want 4 optional inputs at most
+% only want 5 optional inputs at most
 numvarargs = length(varargin);
-if numvarargs > 4
-    error('create_pattern_shirt: Too many inputs, requieres at most 4 optional inputs')
+if numvarargs > 5
+    error('create_pattern_shirt: Too many inputs, requieres at most 5 optional inputs')
 end
 
 % set defaults for optional inputs
-optargs = {'regular' 'long' 'round' 'plain_hem'};
+optargs = {'regular' 'long' 'round' 'plain_hem', 25};
 optargs(1:numvarargs) = varargin;
-[fit, sleeve_length, neckline, hemtype] =  optargs{:};
+[fit, sleeve_length, neckline, hemtype, fabric_elasticity] =  optargs{:};
 
 %% write pattern properties
 pattern.property.type = human.type;
@@ -61,12 +62,14 @@ else
 end
 pattern.construction_dimensions.hem = hem;
 
-if strcmp(fit,'slim')
-    pattern.construction_dimensions.fit_allowance = -2;
+if strcmp(fit,'extra_slim')
+    pattern.construction_dimensions.fit_allowance = -0.4*fabric_elasticity/100;
+elseif strcmp(fit,'slim')
+    pattern.construction_dimensions.fit_allowance = -0.1*fabric_elasticity/100;
 elseif strcmp(fit,'regular')
-    pattern.construction_dimensions.fit_allowance = 1;
+    pattern.construction_dimensions.fit_allowance = 0.05*fabric_elasticity/100;
 elseif strcmp(fit,'wide')
-    pattern.construction_dimensions.fit_allowance =3;  
+    pattern.construction_dimensions.fit_allowance = 0.15*fabric_elasticity/100;  
 else
     error('create_pattern_shirt: Invalid input for variable fit')
 end 
@@ -129,13 +132,13 @@ pattern.construction_dimensions.cm_cuff_width = (pattern.construction_dimensions
 
 %% create construction points (struct) for torso
 pattern.construction_points.A  = [0 0];
-pattern.construction_points.a1 = [0,(human.chest_circumference+pattern.construction_dimensions.fit_allowance)/4];
+pattern.construction_points.a1 = [0,(human.chest_circumference*(1+pattern.construction_dimensions.fit_allowance))/4];
 pattern.construction_points.a2 = [0,human.rear_shoulder_width/5+pattern.construction_dimensions.cm_cuff_width];
 pattern.construction_points.a3 = [0,human.rear_shoulder_width/2];
 pattern.construction_points.a4 = [-human.rear_shoulder_width/5-pattern.construction_dimensions.cm_cuff_width,0];
 
 pattern.construction_points.b3 = pattern.construction_points.a1 + [0 pattern.construction_dimensions.cm_dp];
-pattern.construction_points.B  = pattern.construction_points.b3 + [0 (human.chest_circumference+pattern.construction_dimensions.fit_allowance)/4];
+pattern.construction_points.B  = pattern.construction_points.b3 + [0 (human.chest_circumference*(1+pattern.construction_dimensions.fit_allowance))/4];
 pattern.construction_points.b1 = pattern.construction_points.B - [0,human.rear_shoulder_width/5+pattern.construction_dimensions.cm_cuff_width];
 pattern.construction_points.b2 = pattern.construction_points.B - [0,human.rear_shoulder_width/2];
 
@@ -151,8 +154,8 @@ pattern.construction_points.F = pattern.construction_points.D-[human.seat_length
 pattern.construction_points.E1 = [pattern.construction_points.E(1) pattern.construction_points.b3(2)];
 pattern.construction_points.F1 = [pattern.construction_points.F(1) pattern.construction_points.a1(2)];
 
-pattern.construction_points.e1 = pattern.construction_points.E+[0,-(human.hip_circumference+pattern.construction_dimensions.fit_allowance)/4];
-pattern.construction_points.f1 = pattern.construction_points.F+[0,(human.hip_circumference+pattern.construction_dimensions.fit_allowance)/4];
+pattern.construction_points.e1 = pattern.construction_points.E+[0,-(human.hip_circumference*(1+pattern.construction_dimensions.fit_allowance))/4];
+pattern.construction_points.f1 = pattern.construction_points.F+[0,(human.hip_circumference*(1+pattern.construction_dimensions.fit_allowance))/4];
 
 pattern.construction_points.x  = pattern.construction_points.B-[human.back_length/2 0];
 pattern.construction_points.x1 = [pattern.construction_points.x(1) 0];
@@ -163,8 +166,8 @@ pattern.construction_points.x3 = [pattern.construction_points.x1(1),pattern.cons
 
 % move x2 and x3 for regular and wide fit for men
 if strcmp(human.type,'male') && pattern.construction_dimensions.fit_allowance > 0
-    pattern.construction_points.x2 = pattern.construction_points.x2 +[0 -pattern.construction_dimensions.fit_allowance];
-    pattern.construction_points.x3 = pattern.construction_points.x3 +[0 pattern.construction_dimensions.fit_allowance];
+    pattern.construction_points.x2 = pattern.construction_points.x2 +[0 -(1+pattern.construction_dimensions.fit_allowance)*human.chest_circumference];
+    pattern.construction_points.x3 = pattern.construction_points.x3 +[0 (1+pattern.construction_dimensions.fit_allowance)*human.chest_circumference];
 end
 
 pattern.construction_points.y  = pattern.construction_points.B-[human.back_length/4 0];
