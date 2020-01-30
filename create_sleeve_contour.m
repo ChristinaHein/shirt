@@ -86,9 +86,7 @@ x = (pattern.construction_dimensions.fac/2+pattern.construction_dimensions.cm_ss
 y = pattern.construction_points.sD(2)/pattern.construction_points.sD(1)*x;
 pattern.construction_points.P1 = [x y];
 
-x = (pattern.construction_points.sE(1)-pattern.construction_points.sD(1))/3;
-y = pattern.construction_dimensions.ac/9;
-pattern.construction_points.P3 = pattern.construction_points.sE + [-x y];
+pattern.construction_points.P3 = pattern.construction_points.sE + 1/3*(pattern.construction_points.sD-pattern.construction_points.sE);
 
 pattern.construction_points.P1a = create_P_between_P1P2_with_d(pattern.construction_points.sC, pattern.construction_points.P1, -0.8);
 pattern.construction_points.P1b = create_P_between_P1P2_with_d(pattern.construction_points.P1, pattern.construction_points.sD, 1.5);
@@ -118,11 +116,11 @@ TL = [TL; 2*(pattern.construction_points.P3a-pattern.construction_points.P2)/nor
 TL = [TL; 0.5*TL(6,:)];
 TL = [TL; -0.5*(pattern.construction_points.P3(1)-pattern.construction_points.sE(1)) 0];
 
-% figure
-% plot(PL(:,1), PL(:,2),'r*'); daspect([1 1 1]); hold on;
-% plot(PL(:,1)+TL(:,1), PL(:,2)+TL(:,2),'b*'); 
+figure
+plot(PL(:,1), PL(:,2),'ro'); daspect([1 1 1]); hold on;
+%plot(PL(:,1)+TL(:,1), PL(:,2)+TL(:,2),'b*'); 
 PL = PLBezierPT(PL,TL,10);
-%plot(PL(:,1), PL(:,2),'r.-'); 
+plot(PL(:,1), PL(:,2),'r-'); 
 
 
 pattern.construction_dimensions.sac = PLCurveLength(PL); % sleeve armhole circumference
