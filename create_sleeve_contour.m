@@ -116,11 +116,11 @@ TL = [TL; 2*(pattern.construction_points.P3a-pattern.construction_points.P2)/nor
 TL = [TL; 0.5*TL(6,:)];
 TL = [TL; -0.5*(pattern.construction_points.P3(1)-pattern.construction_points.sE(1)) 0];
 
-figure
-plot(PL(:,1), PL(:,2),'ro'); daspect([1 1 1]); hold on;
+%figure
+%plot(PL(:,1), PL(:,2),'ro'); daspect([1 1 1]); hold on;
 %plot(PL(:,1)+TL(:,1), PL(:,2)+TL(:,2),'b*'); 
 PL = PLBezierPT(PL,TL,10);
-plot(PL(:,1), PL(:,2),'r-'); 
+%plot(PL(:,1), PL(:,2),'r-'); 
 
 
 pattern.construction_dimensions.sac = PLCurveLength(PL); % sleeve armhole circumference
