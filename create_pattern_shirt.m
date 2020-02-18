@@ -1,7 +1,7 @@
 function pattern = create_pattern_shirt(human, varargin)
 %% create_pattern_shirt(human, [fit, sleeve_length, neckline, hemtype, fabric_elasticity]) - creates a pattern of a shirt
 % (created by Christina M. Hein, 2019-April-24)
-% (last changes by Christina M. Hein, 2019-August-09)
+% (last changes by Christina M. Hein, 2020-February-18)
 %
 % This function creates a struct of type pattern that contains the PL of a
 % shirt and other necessary information (e.g. material, part names). This
@@ -202,7 +202,7 @@ pattern = create_basic_pattern_front_part(human,pattern);
 pattern = create_production_pattern_front_part(pattern, seam, hem); 
 
 %% optimize production pattern of front part relating to back part
-% pattern = optimize_production_pattern_front_part(pattern, seam, hem);
+pattern = optimize_production_pattern_front_part(pattern, seam, hem);
 
 
 %% create sleeve

@@ -1,4 +1,27 @@
 function pattern = optimize_production_pattern_front_part(pattern, seam, hem)
+%% optimize_production_pattern_front_part(pattern, seam, hem) - optimizes the production pattern of the front part relative to the back part
+% (created by Christina M. Hein, 2019-April-24)
+% (last changes by Christina M. Hein, 2020-February-18)
+%
+% This function optimizes the production pattern of the front part relative
+% to the back part. It cuts out an edge on the neckline, so that the two
+% parts map together exactly for sewing.
+%
+% pattern = optimize_production_pattern_front_part(pattern, seam, hem)
+%
+% === INPUT ARGUMENTS ===
+% pattern     = struct containing PL of construction points, CPLs of basic 
+%               pattern and production pattern, part names, material and
+%               label information.
+% seam        = seam allowance measurement [cm]
+% hem         = hem allowance measurement [cm]
+
+% === OUTPUT ARGUMENTS ===
+% pattern     = struct containing PL of construction points, CPLs of basic 
+%               pattern and production pattern, part names, material and
+%               label information.
+%
+% see create_production_pattern_back, create_production_pattern_front
 
 %% separate basic and production pattern
 % separate back part from pattern
@@ -9,21 +32,26 @@ end
 
 separator = [1; find(isnan(pattern.basic_pattern(:,1)) & isnan(pattern.basic_pattern(:,2)))];
 bp_back = pattern.basic_pattern(separator(position):separator(position+1),:);
+bp_back(~any(~isnan(bp_back), 2),:)=[]; % delete NaN 
+
 
 separator = [1; find(isnan(pattern.production_pattern(:,1)) & isnan(pattern.production_pattern(:,2)))];
 pp_back = pattern.production_pattern(separator(position):separator(position+1),:);
-
+pp_back(~any(~isnan(pp_back), 2),:)=[]; % delete NaN 
 
 % separate front part from production pattern
 position = find(pattern.part_names == 'front_part');
 if isempty(position)
     error('Optimization of production pattern of front part failed: It is not possible to optimize the production pattern without back pattern. Please use create_production_pattern_back_part first.')
 end
+
 separator = [1; find(isnan(pattern.basic_pattern(:,1)) & isnan(pattern.basic_pattern(:,2)))];
 bp_front = pattern.basic_pattern(separator(position):separator(position+1),:);
+bp_front(~any(~isnan(bp_front), 2),:)=[]; % delete NaN 
 
 separator = [1; find(isnan(pattern.production_pattern(:,1)) & isnan(pattern.production_pattern(:,2)))];
 pp_front = pattern.production_pattern(separator(position):separator(position+1),:);
+pp_front(~any(~isnan(pp_front), 2),:)=[];% delete NaN 
 
 %% create polyshape objects
 po_bp_back = polyshape(bp_back); % polyshape object basic pattern back
