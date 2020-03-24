@@ -160,14 +160,14 @@ pattern.construction_points.f1 = pattern.construction_points.F+[0,(human.hip_cir
 pattern.construction_points.x  = pattern.construction_points.B-[human.back_length/2 0];
 pattern.construction_points.x1 = [pattern.construction_points.x(1) 0];
 
-% for women and slim fit
+% for women and extra slim and slim fit
 pattern.construction_points.x2 = [pattern.construction_points.x(1),pattern.construction_points.b3(2)];
 pattern.construction_points.x3 = [pattern.construction_points.x1(1),pattern.construction_points.a1(2)];
 
 % move x2 and x3 for regular and wide fit for men
 if strcmp(human.type,'male') && pattern.construction_dimensions.fit_allowance > 0
-    pattern.construction_points.x2 = pattern.construction_points.x2 +[0 -(1+pattern.construction_dimensions.fit_allowance)*human.chest_circumference];
-    pattern.construction_points.x3 = pattern.construction_points.x3 +[0 (1+pattern.construction_dimensions.fit_allowance)*human.chest_circumference];
+    pattern.construction_points.x2 = pattern.construction_points.x2 +[0 -pattern.construction_dimensions.fit_allowance*human.chest_circumference];
+    pattern.construction_points.x3 = pattern.construction_points.x3 +[0 pattern.construction_dimensions.fit_allowance*human.chest_circumference];
 end
 
 pattern.construction_points.y  = pattern.construction_points.B-[human.back_length/4 0];
