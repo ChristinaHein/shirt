@@ -21,33 +21,69 @@ PL(position_sE,:) = PL(position_sE,:)+ [0 seam];
 
 %% hem allowance with 'folding'
 alpha = atan((pattern.construction_points.sb(1)-pattern.construction_points.sB(1))/(pattern.construction_points.sC(2)-pattern.construction_points.sB(2)));
-x = hem*tan(alpha);
 
-PL=[PL, zeros(length(PL),1)];
-ptCloud = pointCloud(PL);
-sb = pattern.construction_points.sb-[seam 0];
-[i_sb,~] = findNearestNeighbors(ptCloud, [sb 0], 1);
-PL = ptCloud.Location(:,1:2);
-if i_sb > 1 && i_sb < length(PL)
-    PL = [PL(1:i_sb-1,:);PL(i_sb,:)+[-x -hem]; PL(i_sb:end,:)];
-elseif i_sb == 1
-    PL = [PL(i_sb,:)+[-x -hem]; PL(i_sb:end-1,:);PL(i_sb,:)+[-x -hem]];
-else % i_sb == length(PL)
-    PL = [PL(1:i_sb-1,:);PL(i_sb,:)+[-x -hem]; PL(i_sb,:)];
-end
+
+if strcmp(pattern.property.hemtype, 'simple_cuff')
+    x = hem/2*tan(alpha);
     
-PL=[PL, zeros(length(PL),1)];
-ptCloud = pointCloud(PL);
-sh = pattern.construction_points.sh+[seam 0];
-[i_sh,~] = findNearestNeighbors(ptCloud, [sh 0], 1);
-PL = ptCloud.Location(:,1:2);
-if i_sh > 1 && i_sh < length(PL)
-    PL = [PL(1:i_sh,:);PL(i_sh,:)+[x -hem]; PL(i_sh+1:end,:)];
-elseif i_sh == 1
-    PL = [PL(i_sh,:)+[x -hem]; PL(i_sh+1:end,:); PL(i_sh,:)+[x -hem]];
-else % i_sh == length(PL)
-    PL = [PL(1:i_sh-1,:);PL(i_sh,:)+[x -hem]; PL(i_sh,:)];
+    PL=[PL, zeros(length(PL),1)];
+    ptCloud = pointCloud(PL);
+    sb = pattern.construction_points.sb-[seam 0];
+    [i_sb,~] = findNearestNeighbors(ptCloud, [sb 0], 1);
+    PL = ptCloud.Location(:,1:2);
+    if i_sb > 1 && i_sb < length(PL)
+        PL = [PL(1:i_sb-1,:); PL(i_sb,:)+[0 -hem];PL(i_sb,:)+[-x -hem/2]; PL(i_sb:end,:)];
+    elseif i_sb == 1
+        PL = [PL(i_sb,:)+[0 -hem]; PL(i_sb,:)+[-x -hem/2]; PL(i_sb:end-1,:);PL(i_sb,:)+[0 -hem]];
+    else % i_sb == length(PL)
+        PL = [PL(i_sb,:)+[0 -hem]; PL(1:i_sb-1,:);PL(i_sb,:)+[-x -hem/2]; PL(i_sb,:)];
+    end
+
+    PL=[PL, zeros(length(PL),1)];
+    ptCloud = pointCloud(PL);
+    sh = pattern.construction_points.sh+[seam 0];
+    [i_sh,~] = findNearestNeighbors(ptCloud, [sh 0], 1);
+    PL = ptCloud.Location(:,1:2);
+    if i_sh > 1 && i_sh < length(PL)
+        PL = [PL(1:i_sh,:); PL(i_sh,:)+[x -hem/2]; PL(i_sh,:)+[0 -hem]; PL(i_sh+1:end,:)];
+    elseif i_sh == 1
+        PL = [PL(i_sh,:)+[0 -hem];  PL(i_sh+1:end,:); PL(i_sh,:)+[x -hem/2]; PL(i_sh,:)+[0 -hem]];
+    else % i_sh == length(PL)
+        PL = [PL(1:i_sh-1,:);PL(i_sh,:)+[0 -hem]; PL(i_sh,:)+[x -hem/2]; PL(i_sh,:)];
+    end 
+    
+else
+    x = hem*tan(alpha);
+    
+    PL=[PL, zeros(length(PL),1)];
+    ptCloud = pointCloud(PL);
+    sb = pattern.construction_points.sb-[seam 0];
+    [i_sb,~] = findNearestNeighbors(ptCloud, [sb 0], 1);
+    PL = ptCloud.Location(:,1:2);
+    if i_sb > 1 && i_sb < length(PL)
+        PL = [PL(1:i_sb-1,:);PL(i_sb,:)+[-x -hem]; PL(i_sb:end,:)];
+    elseif i_sb == 1
+        PL = [PL(i_sb,:)+[-x -hem]; PL(i_sb:end-1,:);PL(i_sb,:)+[-x -hem]];
+    else % i_sb == length(PL)
+        PL = [PL(1:i_sb-1,:);PL(i_sb,:)+[-x -hem]; PL(i_sb,:)];
+    end
+
+    PL=[PL, zeros(length(PL),1)];
+    ptCloud = pointCloud(PL);
+    sh = pattern.construction_points.sh+[seam 0];
+    [i_sh,~] = findNearestNeighbors(ptCloud, [sh 0], 1);
+    PL = ptCloud.Location(:,1:2);
+    if i_sh > 1 && i_sh < length(PL)
+        PL = [PL(1:i_sh,:);PL(i_sh,:)+[x -hem]; PL(i_sh+1:end,:)];
+    elseif i_sh == 1
+        PL = [PL(i_sh,:)+[x -hem]; PL(i_sh+1:end,:); PL(i_sh,:)+[x -hem]];
+    else % i_sh == length(PL)
+        PL = [PL(1:i_sh-1,:);PL(i_sh,:)+[x -hem]; PL(i_sh,:)];
+    end
 end
+
+
+    
 
 %% Clip mark: shoulder seam
 % find sC in basic pattern
