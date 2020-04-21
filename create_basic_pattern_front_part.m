@@ -37,7 +37,7 @@ if pattern.construction_dimensions.neckline == 0 % round neckline
     PL = PLBezier3P(PL(1,:),PL(2,:),PL(3,:),30);
     pattern.basic_pattern = [pattern.basic_pattern; pattern.construction_points.F; PL];
     %parameters for cuffs neckline
-    pattern.construction_points.necklength_front = PLCurveLength(PL);
+    pattern.construction_dimensions.necklength_front = PLCurveLength(PL);
 else % v neckline
     pattern.construction_points.neck = pattern.construction_points.a4+[-pattern.construction_dimensions.neckline(1) 0];
     PL = pattern.construction_points.neck;
@@ -107,13 +107,14 @@ else % waisted basic cut for women and slim fit for men
         alpha = -acos(dot(temp3,temp4)/(norm(temp3)*norm(temp4)));
         % rotate constructions points right to dart into armhole
         index = create_index(PL,1:i_z3+n);
-        %plot(PL(index,1), PL(index,2), 'r*');
+        %plot(PL(index,1), PL(index,2), 'r.-');
         tempPL = PL(index,:)-pattern.construction_points.chest_point; %move, so that origin in center of rotation
         %plot(tempPL(index,1), tempPL(index,2), 'r*');
         R = [cos(alpha) -sin(alpha); sin(alpha) cos(alpha)]; %rotate
         tempPL = R*tempPL'; tempPL=tempPL';
         %plot(tempPL(index,1), tempPL(index,2), 'b*');
         tempPL = tempPL+pattern.construction_points.chest_point; %move back
+        %plot(tempPL(index,1), tempPL(index,2), 'b.-');
         pattern.construction_points.dart_right = tempPL(end,:); % for production pattern
         %plot(pattern.construction_points.dart_left(1),pattern.construction_points.dart_left(2),'bo'); hold on;
         % redo armhole
@@ -128,7 +129,7 @@ else % waisted basic cut for women and slim fit for men
         % write PL
         PL = [PLa; tempPL; pattern.construction_points.chest_point; PL(i_z3+n:end,:)];
     else
-        PL = [PLa; PL];
+         PL = [PLa; PL];
     end
 end
 pattern.basic_pattern = [pattern.basic_pattern; PL(:,1:2)];

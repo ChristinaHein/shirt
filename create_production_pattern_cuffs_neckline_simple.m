@@ -2,7 +2,7 @@ function pattern = create_production_pattern_cuffs_neckline_simple(pattern, seam
 pattern.part_names = [pattern.part_names, "cuffs_neckline_simple"];
 
 % length
-l = pattern.construction_points.necklength_front + pattern.construction_points.necklength_back+seam;
+l = pattern.construction_dimensions.necklength_front + pattern.construction_dimensions.necklength_back+seam;
 
 % angle
 alpha = pattern.construction_points.alpha_neck;

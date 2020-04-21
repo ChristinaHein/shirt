@@ -36,7 +36,7 @@ else
 end
 
 % length
-l = pattern.construction_points.necklength_front + pattern.construction_points.necklength_back+allowance;
+l = pattern.construction_dimensions.necklength_front + pattern.construction_dimensions.necklength_back+allowance;
 l = l*factor_shorten;
 
 % width

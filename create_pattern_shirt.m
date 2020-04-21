@@ -217,7 +217,7 @@ end
 %% create cuffs neckline for v-neck or simple cuffs
 if pattern.construction_dimensions.neckline ~= 0
     pattern = create_production_pattern_cuffs_neckline_simple(pattern, seam);
-    pattern = create_production_pattern_cuffs_neckline(pattern, 10); %fine cuff
+    % pattern = create_production_pattern_cuffs_neckline(pattern, 10); %fine cuff
 else
     pattern = create_production_pattern_cuffs_neckline(pattern, seam, 0.8); 
 end
