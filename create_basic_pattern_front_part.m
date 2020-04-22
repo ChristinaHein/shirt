@@ -118,7 +118,7 @@ else % waisted basic cut for women and slim fit for men
         pattern.construction_points.dart_right = tempPL(end,:); % for production pattern
         %plot(pattern.construction_points.dart_left(1),pattern.construction_points.dart_left(2),'bo'); hold on;
         % redo armhole
-        pattern.construction_points.y3 =pattern.construction_points.y3-pattern.construction_dimensions.cm_am/2;
+        pattern.construction_points.y3 =pattern.construction_points.y3-pattern.construction_dimensions.am/2;
         PLa = [pattern.construction_points.y3];
         % plot(tempPL(1,1),tempPL(1,2),'og')
         temp1=abs(pattern.construction_points.a3(2)-pattern.construction_points.y3(2))*(abs(tempPL(1,1))+pattern.construction_dimensions.cm_sf)/pattern.construction_points.y1(1);

@@ -110,20 +110,19 @@ end
 pattern.construction_dimensions.cm_dp = 10;% distance between parts
 pattern.construction_dimensions.cm_nf = 2; % neck front
 pattern.construction_dimensions.cm_sf = 3; % shoulder front
-%pattern.construction_dimensions.cm_w  = 2; % waist (2-3, todo: variabel)
 pattern.construction_dimensions.cm_nb = 2; % neck back
 pattern.construction_dimensions.cm_sb = 2; % shoulder back
-pattern.construction_dimensions.cm_am = human.chest_circumference/24+1; % armhole measurement
+pattern.construction_dimensions.am = human.chest_circumference/24+1; % armhole measurement
 pattern.construction_dimensions.f = 1.16;
 % corrections on armhole measurment according to Hofenbitzer (S. 11): 1/3
 if human.chest_circumference <= 89
-    pattern.construction_dimensions.cm_am = pattern.construction_dimensions.cm_am -0.5;
+    pattern.construction_dimensions.am = pattern.construction_dimensions.am -0.5;
 elseif human.chest_circumference <= 99
-    pattern.construction_dimensions.cm_am = pattern.construction_dimensions.cm_am -0.3;
+    pattern.construction_dimensions.am = pattern.construction_dimensions.am -0.3;
 elseif human.chest_circumference <= 109
-    pattern.construction_dimensions.cm_am = pattern.construction_dimensions.cm_am -0.17;
+    pattern.construction_dimensions.am = pattern.construction_dimensions.am -0.17;
 elseif human.chest_circumference >=120
-     pattern.construction_dimensions.cm_am = pattern.construction_dimensions.cm_am +0.17;
+     pattern.construction_dimensions.am = pattern.construction_dimensions.am +0.17;
 end
 pattern.construction_dimensions.cm_cm = 6; % clip mark sleeve-back part
 pattern.construction_dimensions.cm_cc = 0.2; % clip cut length
@@ -178,11 +177,11 @@ pattern.construction_points.z1 = [pattern.construction_points.z(1) pattern.const
 pattern.construction_points.z2 = [pattern.construction_points.z(1) pattern.construction_points.x2(2)];
 pattern.construction_points.z3 = [pattern.construction_points.z(1) pattern.construction_points.x3(2)];
 
-temp1 = 2*pattern.construction_dimensions.cm_am-(pattern.construction_points.b2(2)-pattern.construction_points.b3(2));
+temp1 = 2*pattern.construction_dimensions.am-(pattern.construction_points.b2(2)-pattern.construction_points.b3(2));
 temp2 = temp1/(human.back_length/2-pattern.construction_dimensions.cm_sb)*(human.back_length/4-pattern.construction_dimensions.cm_sb);
 pattern.construction_points.y2 = [pattern.construction_points.y(1), pattern.construction_points.b2(2)+temp2];
 
-temp1 = 1.5*pattern.construction_dimensions.cm_am-(pattern.construction_points.a1(2)-pattern.construction_points.a3(2));
+temp1 = 1.5*pattern.construction_dimensions.am-(pattern.construction_points.a1(2)-pattern.construction_points.a3(2));
 temp2 = temp1/(human.back_length/2-pattern.construction_dimensions.cm_sf)*(human.back_length/4-pattern.construction_dimensions.cm_sf);
 pattern.construction_points.y3 = [pattern.construction_points.y1(1),pattern.construction_points.a3(2)-temp2];
 %% back part
