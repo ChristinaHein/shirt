@@ -12,7 +12,7 @@ open('Dimensionsheet.pdf');
 %% create struct of type 'human' for individual measurements
 
 % option 1: direct function input
-human_example = create_human_from_measurement('Sam Sample','female', 33, 23, 40, 87, 63.5, 90.5, 58, 24.4, 15)
+human_example = create_human_from_measurement('Sam Sample','female', 33, 23, 40, 87, 63.5, 90.5, 58, 24.4, 15);
  
 % option 2: input help
 % human_example = create_human_from_measurement;
@@ -48,12 +48,18 @@ shirt_intern_cutting_extern_sewing(human_example, fit, sleeve);
 % material costs for 2 m fabric ~ 20 Euro
 % estimated costs: 180 Euro
 
+% Note: please install the DXFLib (Grzegorz Kwiatek, 2020) from MATLAB Central File Exchange:
+% https://www.mathworks.com/matlabcentral/fileexchange/33884-dxflib
+
 shirt_extern_production_two(human_example, fit, sleeve);
 
 %% d) prepare external cutting and sewing at ONE supplier
 % cutting and sewing: Waldmann Textech ~ 300 Euro
 % material costs for 2 m fabric ~ 20 Euro
 % estimated costs: 320 Euro
+
+% Note: please install the DXFLib (Grzegorz Kwiatek, 2020) from MATLAB Central File Exchange:
+% https://www.mathworks.com/matlabcentral/fileexchange/33884-dxflib
 
 shirt_extern_production_one(human_example, fit, sleeve);
 

@@ -49,7 +49,7 @@ else % v neckline
     PL = PLBezier3P(PL, H, NS,10);
     pattern.basic_pattern = [pattern.basic_pattern; pattern.construction_points.F; PL(:,1:2)];
     %parameters for cuffs neckline
-    pattern.construction_points.necklength_front = PLCurveLength(PL);
+    pattern.construction_dimensions.necklength_front = PLCurveLength(PL);
     a = PL(3,:)-pattern.construction_points.neck;
     b = [-1 0];
     pattern.construction_points.alpha_neck = acosd((a(2)*b(1)+a(1)*b(2))/(norm(a)*norm(b)));
