@@ -11,7 +11,7 @@ function pattern = create_pattern_shirt(human, varargin)
 %
 % === INPUT ARGUMENTS ===
 % human             = struct of type human (name, type, body dimensions)
-% fit               = 'extra_slim', 'slim', 'regular', 'wide', default is regular
+% fit               = 'extra_tight', 'tight', 'regular', 'loose', default is regular
 % sleeve length     = 'sleeveless', 'short', '3/4sleeves', 'long' , default
 %                      is long
 % neckline          = 'round' or 'v', default is 'round'
@@ -62,13 +62,13 @@ else
 end
 pattern.construction_dimensions.hem = hem;
 
-if strcmp(fit,'extra_slim')
+if strcmp(fit,'extra_tight')
     pattern.construction_dimensions.fit_allowance = -0.4*fabric_elasticity/100;
-elseif strcmp(fit,'slim')
+elseif strcmp(fit,'tight')
     pattern.construction_dimensions.fit_allowance = -0.1*fabric_elasticity/100;
 elseif strcmp(fit,'regular')
     pattern.construction_dimensions.fit_allowance = 0.05*fabric_elasticity/100;
-elseif strcmp(fit,'wide')
+elseif strcmp(fit,'loose')
     pattern.construction_dimensions.fit_allowance = 0.15*fabric_elasticity/100;  
 else
     error('create_pattern_shirt: Invalid input for variable fit')
@@ -159,11 +159,11 @@ pattern.construction_points.f1 = pattern.construction_points.F+[0,(human.hip_cir
 pattern.construction_points.x  = pattern.construction_points.B-[human.back_length/2 0];
 pattern.construction_points.x1 = [pattern.construction_points.x(1) 0];
 
-% for women and extra slim and slim fit
+% for women and extra tight and tight fit
 pattern.construction_points.x2 = [pattern.construction_points.x(1),pattern.construction_points.b3(2)];
 pattern.construction_points.x3 = [pattern.construction_points.x1(1),pattern.construction_points.a1(2)];
 
-% move x2 and x3 for regular and wide fit for men
+% move x2 and x3 for regular and loose fit for men
 if strcmp(human.type,'male') && pattern.construction_dimensions.fit_allowance > 0
     pattern.construction_points.x2 = pattern.construction_points.x2 +[0 -pattern.construction_dimensions.fit_allowance*human.chest_circumference];
     pattern.construction_points.x3 = pattern.construction_points.x3 +[0 pattern.construction_dimensions.fit_allowance*human.chest_circumference];

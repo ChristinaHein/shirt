@@ -13,12 +13,12 @@ function pattern = shirt_extern_production_two(human, fit, sleeves)
 % - order Mail for cutting and sewing
 % 
 % EXAMPEL:
-% pattern = shirt_extern_production_two(create_human_from_size('female',36, 'Sam Sample'), 'slim', 'long')
+% pattern = shirt_extern_production_two(create_human_from_size('female',36, 'Sam Sample'), 'tight', 'long')
 %
 % === INPUT ARGUMENTS === 
 % human     = struct containing name, type (male, female, child) and
 %             body dimensions
-% fit       = 'slim', 'regular' or 'wide'
+% fit       = 'tight', 'regular' or 'loose'
 % sleeves   = 'sleeveless', 'short', '3/4sleeves', 'long'
 %
 % === OUTPUT ARGUMENTS ===
@@ -56,7 +56,7 @@ fclose(fid);
 filename = fullfile(directory, 'Order_mail_cutting.txt');
 fid = fopen(filename,'w');
 fprintf(fid,'waldmann-textech \nHerr Andreas Waldmann \nDurchaer Strasse 29-31 \n87471 Durach \n\n\n');
-fprintf(fid,'Sehr geehrter Herr Waldmann,\n\nbitte schneiden Sie angefügtem Schnittmusterplan die Teile aus Jersey (separat gesendet) zu.\n');
+fprintf(fid,'Sehr geehrter Herr Waldmann,\n\nbitte schneiden Sie angefÃ¼gtem Schnittmusterplan die Teile aus Jersey (separat gesendet) zu.\n');
 fprintf(fid,'Das zugeschnittenen Teile senden Sie bitte an: ADRESSE\n\n');
 fprintf(fid,'Mit freundlichen Gruessen\n NAME');
 fprintf(fid,'\n\n Anlage: Zuschneideplan als dxf-Datei');
@@ -74,7 +74,7 @@ filename = fullfile(directory, 'Order_tailor.txt');
 fid = fopen(filename,'w');
 fprintf(fid,'Altenburger Anja \nMass u. Aenderungsschneiderei \nGruenwalder Str. 24 \n81547 Muenchen \n\n\n');
 fprintf(fid,'Sehr geehrte Frau Altenburger,\n\nbitte naehen Sie aus den angefuegten Schnittmusterteilen ein Shirt.\n');
-fprintf(fid,'Die Nahtzugabe beträgt %d cm und die Saumzugabe %d cm.\n', pattern.construction_dimensions.seam,pattern.construction_dimensions.hem);
+fprintf(fid,'Die Nahtzugabe betrÃ¤gt %d cm und die Saumzugabe %d cm.\n', pattern.construction_dimensions.seam,pattern.construction_dimensions.hem);
 fprintf(fid,'Das fertige Shirt senden Sie bitte an: \n ADRESSE\n\n');
 fprintf(fid,'Mit freundlichen Gruessen\n NAME');
 fclose(fid);

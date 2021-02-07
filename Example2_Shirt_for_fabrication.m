@@ -19,7 +19,7 @@ human_example = create_human_from_measurement('Sam Sample','female', 33, 23, 40,
 
 
 %% define shirt properties
-fit = 'slim';
+fit = 'tight';
 sleeve = 'long';
 
 %% a) prepare internal fabrication

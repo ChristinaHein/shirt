@@ -11,12 +11,12 @@ function pattern = shirt_intern_production (human, fit, sleeves)
 % - variable human (for documentation)
 % 
 % EXAMPEL:
-% pattern = shirt_intern_production_(create_human_from_size('female',36, 'Sam Sample'), 'slim', 'long')
+% pattern = shirt_intern_production_(create_human_from_size('female',36, 'Sam Sample'), 'tight', 'long')
 %
 % === INPUT ARGUMENTS === 
 % human     = struct containing name, type (male, female, child) and
 %             body dimensions
-% fit       = 'slim', 'regular' or 'wide'
+% fit       = 'tight', 'regular' or 'loose'
 % sleeves   = 'sleeveless', 'short', '3/4sleeves', 'long'
 %
 % === OUTPUT ARGUMENTS ===

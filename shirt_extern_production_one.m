@@ -13,12 +13,12 @@ function pattern = shirt_extern_production_one(human, fit, sleeves)
 % - order E-Mail
 % 
 % EXAMPEL:
-% pattern = shirt_extern_production_one(create_human_from_size('female',36, 'Sam Sample'), 'slim', 'long')
+% pattern = shirt_extern_production_one(create_human_from_size('female',36, 'Sam Sample'), 'tight', 'long')
 %
 % === INPUT ARGUMENTS === 
 % human     = struct containing name, type (male, female, child) and
 %             body dimensions
-% fit       = 'slim', 'regular' or 'wide'
+% fit       = 'tight', 'regular' or 'loose'
 % sleeves   = 'short', '3/4sleeves', 'long'
 %
 % === OUTPUT ARGUMENTS ===

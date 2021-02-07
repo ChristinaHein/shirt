@@ -24,11 +24,11 @@ function directory = create_production_files_ep(human, pattern, varargin)
 % 
 %
 %% check name
-% replace ä,ö,ü,ß
-human.name = strrep(human.name,'ä','ae');
-human.name = strrep(human.name,'ö','oe');
-human.name = strrep(human.name,'ü','ue');
-human.name = strrep(human.name,'ß','ss');
+% replace Ã¤,Ã¶,Ã¼,ÃŸ
+human.name = strrep(human.name,'Ã¤','ae');
+human.name = strrep(human.name,'Ã¶','oe');
+human.name = strrep(human.name,'Ã¼','ue');
+human.name = strrep(human.name,'ÃŸ','ss');
 
 % check if only letters
 temp = isstrprop(human.name,'alpha');

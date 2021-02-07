@@ -12,7 +12,7 @@ The functions presented here allow you to create the basic cutting pattern for a
 
 The following options are already included:
 * Gender: Lady, Men
-* Fit: wide, regular, slim
+* Fit: loose, regular, tight
 * neckline: Round neck, v-neckline
 * sleeves: sleeveless, short, 3/4 sleeves, long
 

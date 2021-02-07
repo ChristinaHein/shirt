@@ -65,11 +65,11 @@ PLa = PLBezier3P(PLa(1,:),PLa(2,:),PLa(3,:),30);
 pattern.construction_dimensions.fac = PLCurveLength([pattern.construction_points.a3+[-pattern.construction_dimensions.cm_sf 0]; PLa]); % front armhole circumference
 %pattern.basic_pattern = [pattern.basic_pattern; PLa];
 %% side seam 
-if strcmp(human.type,'male') && pattern.construction_dimensions.fit_allowance > 0 %non-waisted basic cut for men with regular of wide fit
+if strcmp(human.type,'male') && pattern.construction_dimensions.fit_allowance > 0 %non-waisted basic cut for men with regular of loose fit
     PL = [PLa; pattern.construction_points.x3];
     PL = [PL; pattern.construction_points.D1];
     PL = [PL; pattern.construction_points.F(1),max(pattern.construction_points.f1(2),pattern.construction_points.F1(2))];
-else % waisted basic cut for women and slim fit for men
+else % waisted basic cut for women and tight fit for men
     PL = [pattern.construction_points.x3];
     PL = [PL; pattern.construction_points.D+[0 (human.waist_circumference*(1+pattern.construction_dimensions.fit_allowance))/4]];
     PL = [PL; pattern.construction_points.f1+[6,0]];
