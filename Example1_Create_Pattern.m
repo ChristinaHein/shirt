@@ -1,4 +1,4 @@
-%% Exampel 1: How to use functions to create patten of made-to-measure shirt
+%% Example 1: How to use functions to create patten of made-to-measure shirt
 % written by Christina Hein, 09/2019
 
 %% inital state

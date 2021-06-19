@@ -1,4 +1,4 @@
-%% Exampel 2: How to use functions to create all files for  a made-to-measure shirt
+%% Example 2: How to use functions to create all files for  a made-to-measure shirt
 % written by Christina Hein, 11/2019
 
 %% initial state
